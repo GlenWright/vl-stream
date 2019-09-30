@@ -1,4 +1,4 @@
-var socket = io('http://localhost:4004');
+var socket = io(window.location.href);
 
 $('#press-me').click(function (e) {
     socket.emit('changePage', 'doit');
