@@ -1,0 +1,18 @@
+doctype html
+html
+    head
+        include includes/generic-head.pug
+    body
+        p Team 1
+        p Team 2
+        p Score 1
+        p Score 2
+        p
+            | Logo 1
+            img(src='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png')
+        p
+            | Logo 2
+            img(src='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png')
+
+        script(src='/socket.io/socket.io.js')
+        script(src='/js/waiting.js')
