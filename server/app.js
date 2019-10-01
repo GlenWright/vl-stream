@@ -40,6 +40,7 @@ app.get('/stream/champ-select', function(req, res) {
 
 app.post('/events/champ-select', jsonParser, function(req, res) {
     console.log(req.body)
+    res.end(JSON.stringify(req.body, null, 2))
 })
 
 
