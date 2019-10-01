@@ -12,6 +12,7 @@ const pug = require('pug')
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json())
 app.use(express.static(__dirname + '/../public'))
 app.set('view engine', 'pug')
 app.set('views', __dirname + '/../public/views')
@@ -40,6 +41,7 @@ app.get('/stream/champ-select', function(req, res) {
 
 app.post('/events/champ-select', function(req, res) {
     console.log(req.body)
+    console.log(req.body.test)
     res.end(JSON.stringify(req.body, null, 2))
 })
 
