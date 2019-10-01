@@ -11,8 +11,9 @@ const streamio = io.of('/stream')
 const pug = require('pug')
 const bodyParser = require('body-parser')
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json())
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var jsonParser = bodyParser.json()
+
 app.use(express.static(__dirname + '/../public'))
 app.set('view engine', 'pug')
 app.set('views', __dirname + '/../public/views')
@@ -39,7 +40,7 @@ app.get('/stream/champ-select', function(req, res) {
     res.render('champ-select')
 })
 
-app.post('/events/champ-select', function(req, res) {
+app.post('/events/champ-select', jsonParser, function(req, res) {
     console.log(req.body)
     console.log(req.body.test)
     res.end(JSON.stringify(req.body, null, 2))
