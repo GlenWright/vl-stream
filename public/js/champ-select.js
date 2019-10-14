@@ -80,25 +80,22 @@ socket.on('teamChanges', function(data) {
     }
 });
 
-socket.on('connect', function() {
-    socket.emit('requestInit', null, function(data) {
-console.log(data);
-        state = data.state;
-        blue_team = data.blueTeam;
-        red_team = data.redTeam;
+socket.on('initData', function(data) {
+    state = data.state;
+    blue_team = data.blueTeam;
+    red_team = data.redTeam;
 
-        $('#phase').text(state.phase);
+    $('#phase').text(state.phase);
 
-        state.summoners.forEach(function(summoner, i) {
-            $('#summoner_' + i).text(summoner.name);
+    state.summoners.forEach(function(summoner, i) {
+        $('#summoner_' + i).text(summoner.name);
 
-            if (summoner.champ_id) {
-                // Set champ image
-            }
-        });
+        if (summoner.champ_id) {
+            // Set champ image
+        }
+    });
 
-        state.bans.forEach(function(ban, i) {
-            // Set banned champs
-        });
+    state.bans.forEach(function(ban, i) {
+        // Set banned champs
     });
 });

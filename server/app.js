@@ -165,18 +165,6 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
 io.on('connection', (socket) => {
     console.log(socket.id)
 
-    socket.on('requestInit', (data, fn) => {
-        console.log(data)
-        console.log(fn)
-        console.log('requestInit')
-        // update with latest details
-        fn({
-            state: champSelect,
-            blueTeam: blueTeam,
-            redTeam: redTeam
-        })
-    })
-
     socket.on('changePage', (page) => {
         currentPage = page
         streamio.emit('changePage', page)
@@ -197,6 +185,12 @@ io.on('connection', (socket) => {
             red_team: redTeam,
             red_logo: redLogo
         })
+    })
+
+    socket.emit('initData', {
+        state: champSelect,
+        blueTeam: blueTeam,
+        redTeam: redTeam
     })
 })
 
