@@ -1,0 +1,8 @@
+#phase {
+    text-transform: capitalize;
+}
+
+table td {
+    width: 100px;
+    background-color: #3c9c3c;
+}
