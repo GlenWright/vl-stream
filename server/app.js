@@ -166,6 +166,8 @@ io.on('connection', (socket) => {
     console.log(socket.id)
 
     socket.on('requestInit', (fn) => {
+        console.log(fn)
+        console.log('requestInit')
         // update with latest details
         fn({
             state: champSelect,

@@ -82,6 +82,7 @@ socket.on('teamChanges', function(data) {
 
 socket.on('connect', function() {
     socket.emit('requestInit', function(data) {
+console.log(data);
         state = data.state;
         blue_team = data.blueTeam;
         red_team = data.redTeam;
