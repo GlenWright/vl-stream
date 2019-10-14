@@ -81,6 +81,7 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
             })
 
             // Update stream clients
+            currentPage = 'champ-select'
             streamio.emit('changePage', 'champ-select')
 
             break
@@ -147,6 +148,7 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
             break
 
         case 'delete':
+            currentPage = 'starting-soon'
             streamio.emit('changePage', 'starting-soon')
             break
 
