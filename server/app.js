@@ -58,11 +58,11 @@ app.get('/stream/champ-select', function(req, res) {
 })
 
 app.post('/events/champ-select', jsonParser, function(req, res) {
-    let etype = req.body.etype
+    var etype = req.body.etype
 
     switch (etype) {
         case 'create':
-            let summoners = req.body.summoners
+            var summoners = req.body.summoners
 
             banCount = 0
             pickCount = 0
@@ -86,8 +86,8 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
             break
 
         case 'ban':
-            let champId = req.body.champ_id
-            let confirm = req.body.confirm
+            var champId = req.body.champ_id
+            var confirm = req.body.confirm
 
             champSelect.bans.push({ champ_id: champId })
 
@@ -101,7 +101,7 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
             if (confirm) banCount++
 
             // Check phase
-            let newPhase = champSelect.phase
+            var newPhase = champSelect.phase
 
             if (banCount === 6) newPhase = 'picks' // Begin pick phase
             if (banCount === 10) newPhase = 'picks' // Begin pick phase 2
@@ -115,11 +115,11 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
             break
 
         case 'pick':
-            let champId = req.body.champ_id
-            let confirm = req.body.confirm
-            let slot = req.body.cell_id
+            var champId = req.body.champ_id
+            var confirm = req.body.confirm
+            var slot = req.body.cell_id
 
-            let summoner = champSelect.summoners[slot]
+            var summoner = champSelect.summoners[slot]
             summoner.champ_id = champId
             summoner.locked = confirm
 
@@ -133,7 +133,7 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
             if (confirm) pickCount++
 
             // Check phase
-            let newPhase = champSelect.phase
+            var newPhase = champSelect.phase
 
             if (pickCount === 6) newPhase = 'bans' // Begin ban phase 2
             if (pickCount === 10) newPhase = 'preparation' // Begin prep phase
@@ -178,11 +178,11 @@ io.on('connection', (socket) => {
     })
 
     socket.on('swapTeams', () => {
-        let tempTeam = blueTeam
+        var tempTeam = blueTeam
         blueTeam = redTeam
         redTeam = tempTeam
 
-        let tempLogo = blueLogo
+        var tempLogo = blueLogo
         blueLogo = redLogo
         redLogo = tempLogo
 
