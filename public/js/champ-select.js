@@ -1,5 +1,3 @@
-import { ifStatement } from "babel-types";
-
 var socket = window.socket;
 
 var state = {
