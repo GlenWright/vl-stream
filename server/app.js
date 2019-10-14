@@ -72,7 +72,7 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
                 bans: []
             }
 
-            summoners.forEach(summoner => {
+            Object.values(summoners).forEach(summoner => {
                 champSelect.summoners.push({
                     name: summoner,
                     champ_id: null,
