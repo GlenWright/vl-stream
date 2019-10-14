@@ -165,7 +165,8 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
 io.on('connection', (socket) => {
     console.log(socket.id)
 
-    socket.on('requestInit', (fn) => {
+    socket.on('requestInit', (data, fn) => {
+        console.log(data)
         console.log(fn)
         console.log('requestInit')
         // update with latest details
