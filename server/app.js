@@ -186,7 +186,9 @@ io.on('connection', (socket) => {
             red_logo: redLogo
         })
     })
+})
 
+streamio.on('connection', (socket) => {
     socket.emit('initData', {
         state: champSelect,
         blueTeam: blueTeam,
