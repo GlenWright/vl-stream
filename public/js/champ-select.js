@@ -83,9 +83,15 @@ socket.on('teamChanges', function(data) {
 socket.on('initData', function(data) {
     state = data.state;
     blue_team = data.blueTeam;
+    blue_logo = data.blueLogo;
     red_team = data.redTeam;
+    red_logo = data.redLogo;
 
     $('#phase').text(state.phase);
+    $('#blue_team').text(blue_team);
+    $('#blue_logo').text(blue_logo);
+    $('#red_team').text(red_team);
+    $('#red_logo').text(red_logo);
 
     state.summoners.forEach(function(summoner, i) {
         $('#summoner_' + i).text(summoner.name);

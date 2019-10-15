@@ -126,7 +126,7 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
 
             // Update stream clients
             streamio.emit('pick', {
-                pick_slot: pickCount,
+                pick_slot: slot,
                 champ_id: champId,
                 confirm: confirm
             })
@@ -192,7 +192,9 @@ streamio.on('connection', (socket) => {
     socket.emit('initData', {
         state: champSelect,
         blueTeam: blueTeam,
-        redTeam: redTeam
+        blueLogo: blueLogo,
+        redTeam: redTeam,
+        redLogo: redLogo
     })
 })
 
