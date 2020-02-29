@@ -1,11 +1,23 @@
+@font-face {
+    font-family: "Bebas";
+    src: url("/fonts/BebasRegular.eot");
+    src: url("/fonts/BebasRegular.woff") format("woff"),
+    url("/fonts/BebasRegular.otf") format("opentype"),
+    url("/fonts/BebasRegular.svg") format("svg");
+}
+
+@font-face {
+    font-family: "BigNoodleTitling";
+    src: url("/fonts/BigNoodleTitling.eot");
+    src: url("/fonts/BigNoodleTitling.woff") format("woff"),
+    url("/fonts/BigNoodleTitling.otf") format("opentype"),
+    url("/fonts/BigNoodleTitling.svg") format("svg");
+}
+
 html, body {
     width: 1920px;
     height: 1080px;
     margin: 0;
     padding: 0;
     overflow: hidden;
-}
-
-body {
-    background-color: green;
 }

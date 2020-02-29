@@ -1,8 +1,301 @@
-#phase {
-    text-transform: capitalize;
+body {
+    position: relative;
+    width: 1920;
+    height: 1080;
 }
 
-table td {
-    width: 100px;
-    background-color: #3c9c3c;
+#container {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: pink;
+    background-image: url('/img/champ-select/background.png');
+}
+
+#overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    background-image: url('/img/champ-select/overlay.png');
+}
+
+/* IMAGE */
+#image-layer {
+    z-index: 25;
+}
+
+#image-layer div {
+    position: absolute;
+}
+
+/* Team images */
+.team-image {
+    z-index: 49;
+    width: 208px;
+    height: 159px;
+    background-size: 73%;
+    background-repeat: no-repeat;
+}
+
+#ti-0 {
+    top: 15px;
+    left: 483px;
+    background-position: 26% center;
+    clip-path: polygon(0 0, 81% 0, 100% 100%, 0% 100%);
+}
+
+#ti-1 {
+    top: 15px;
+    left: 1230px;
+    background-position: 74% center;
+    clip-path: polygon(19% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+/* Player images */
+.player-image {
+    z-index: 25;
+    width: 364px;
+    height: 116px;
+    background-size: cover;
+}
+
+#si-0 {
+    top: 210px;
+    left: 18px;
+}
+
+#si-1 {
+    top: 335.25px;
+    left: 18px;
+}
+
+#si-2 {
+    top: 459.25px;
+    left: 18px;
+}
+
+#si-3 {
+    top: 612.25px;
+    left: 18px;
+}
+
+#si-4 {
+    top: 737.25px;
+    left: 18px;
+}
+
+#si-5 {
+    top: 210px;
+    left: 1541px;
+}
+
+#si-6 {
+    top: 335.25px;
+    left: 1541px;
+}
+
+#si-7 {
+    top: 459.25px;
+    left: 1541px;
+}
+
+#si-8 {
+    top: 612.25px;
+    left: 1541px;
+}
+
+#si-9 {
+    top: 737.25px;
+    left: 1541px;
+}
+
+/* Ban images */
+.ban-image {
+    z-index: 49;
+    width: 154px;
+    height: 122px;
+    background-size: cover;
+}
+
+.blue.ban-image {
+    clip-path: polygon(0 0, 79% 0, 100% 100%, 21% 100%);
+}
+
+.red.ban-image {
+    clip-path: polygon(21% 0, 100% 0, 79% 100%, 0% 100%);
+}
+
+#b-0 {
+    top: 910px;
+    left: 60px;
+}
+
+#b-1 {
+    top: 910px;
+    left: 187px;
+}
+
+#b-2 {
+    top: 910px;
+    left: 314px;
+}
+
+#b-3 {
+    top: 910px;
+    left: 483px;
+}
+
+#b-4 {
+    top: 910px;
+    left: 609px;
+}
+
+#b-5 {
+    top: 910px;
+    left: 1715px;
+}
+
+#b-6 {
+    top: 910px;
+    left: 1588px;
+}
+
+#b-7 {
+    top: 910px;
+    left: 1463px;
+}
+
+#b-8 {
+    top: 910px;
+    left: 1290px;
+}
+
+#b-9 {
+    top: 910px;
+    left: 1164px;
+}
+
+/* TEXT */
+#text-layer {
+    z-index: 100;
+}
+
+#text-layer div {
+    position: absolute;
+}
+
+/* Timers */
+.timer {
+    font-size: 100px;
+    font-family: 'Bebas';
+    color: white;
+    text-shadow: 5px 5px 10px #222;
+}
+
+.timer.blue {
+    top: 28px;
+    left: 692px;
+}
+
+.timer.red {
+    top: 28px;
+    left: 1116px;
+}
+
+#phase {
+    z-index: 100;
+    width: 241px;
+    font-size: 30px;
+    font-family: 'BigNoodleTitling';
+    text-align: center;
+    top: 142px;
+    left: 840px;
+    text-shadow:  5px 5px 10px #222;
+    color: #d6cfcf;
+}
+
+.team-name {
+    z-index: 49;
+    font-size: 34px;
+    line-height: 51px;
+    font-family: 'BigNoodleTitling';
+    text-align: center;
+    width: 459px;
+    height: 51px;
+    color: black;
+}
+
+/* Team names */
+#tn-0 {
+    top: 182px;
+    left: 482px;
+}
+
+#tn-1 {
+    top: 182px;
+    left: 979px;
+}
+
+.player-name { 
+    z-index: 100;
+    padding-left: 5px;
+    font-size: 28px;
+    line-height: 29px;
+    font-family: 'BigNoodleTitling';
+    text-align: left;
+    width: 354px;
+    height: 28px;
+    color: #d6cfcf;
+}
+
+/* Player names */
+#sn-0 {
+    top: 299px;
+    left: 19px;
+}
+
+#sn-1 {
+    top: 424px;
+    left: 19px;
+}
+
+#sn-2 {
+    top: 548px;
+    left: 19px;
+}
+
+#sn-3 {
+    top: 701px;
+    left: 19px;
+}
+
+#sn-4 {
+    top: 826px;
+    left: 19px;
+}
+
+#sn-5 {
+    top: 299px;
+    left: 1545px;
+}
+
+#sn-6 {
+    top: 424px;
+    left: 1545px;
+}
+
+#sn-7 {
+    top: 548px;
+    left: 1545px;
+}
+
+#sn-8 {
+    top: 701px;
+    left: 1545px;
+}
+
+#sn-9 {
+    top: 826px;
+    left: 1545px;
 }

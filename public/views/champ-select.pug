@@ -4,78 +4,49 @@ html
         include includes/generic-head.pug
         link(href='/css/champ-select.css', rel='stylesheet', type='text/css')
     body
-        p Team 1
-        p Team 2
-        p Score 1
-        p Score 2
-        p
-            | Logo 1
-            img(src='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png')
-        p
-            | Logo 2
-            img(src='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png')
+        #container
+            #overlay
 
-        #blue-side
-            p Player 1
-            p Player 2
-            p Player 3
-            p Player 4
-            p Player 5
+            #text-layer
+                .timer.blue :02
+                .timer.red :30
+                #phase Pick Phase 1
+                #tn-0.team-name Team 1
+                #tn-1.team-name Team 2
+                #sn-0.player-name Player 1
+                #sn-1.player-name Player 2
+                #sn-2.player-name Player 3
+                #sn-3.player-name Player 4
+                #sn-4.player-name Player 5
+                #sn-5.player-name Player 6
+                #sn-6.player-name Player 7
+                #sn-7.player-name Player 8
+                #sn-8.player-name Player 9
+                #sn-9.player-name Player 10
 
-        #red-side
-            p Player 1
-            p Player 2
-            p Player 3
-            p Player 4
-            p Player 5
-
-        h3#phase Bans
-
-        table
-            tr
-                th(colspan="5") Blue Bans
-                td &nbsp;
-                th(colspan="5") Red Bans
-            tr
-                td#ban_9
-                td#ban_7
-                td#ban_4
-                td#ban_2
-                td#ban_0
-
-                td &nbsp;
-
-                td#ban_1
-                td#ban_3
-                td#ban_5
-                td#ban_6
-                td#ban_8
-
-        table
-            tr
-                th#blue_team Blue Side
-                th &nbsp;
-                th#red_team Red Side
-            tr
-                td#summoner_0 Summoner 1
-                td &nbsp;
-                td#summoner_5 Summoner 6
-            tr
-                td#summoner_1 Summoner 2
-                td &nbsp;
-                td#summoner_6 Summoner 7
-            tr
-                td#summoner_2 Summoner 3
-                td &nbsp;
-                td#summoner_7 Summoner 8
-            tr
-                td#summoner_3 Summoner 4
-                td &nbsp;
-                td#summoner_8 Summoner 9
-            tr
-                td#summoner_4 Summoner 5
-                td &nbsp;
-                td#summoner_9 Summoner 10
+            #image-layer
+                #ti-0.team-image
+                #ti-1.team-image
+                #si-0.player-image(style="background-image: url('http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/1/1000.jpg');")
+                #si-1.player-image
+                #si-2.player-image
+                #si-3.player-image
+                #si-4.player-image
+                #si-5.player-image
+                #si-6.player-image
+                #si-7.player-image
+                #si-8.player-image
+                #si-9.player-image
+                #b-0.blue.ban-image(style="background-image: url('http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/1/1000.jpg');")
+                #b-1.blue.ban-image
+                #b-2.blue.ban-image
+                #b-3.blue.ban-image
+                #b-4.blue.ban-image
+                #b-5.red.ban-image
+                #b-6.red.ban-image
+                #b-7.red.ban-image
+                #b-8.red.ban-image
+                #b-9.red.ban-image
 
         include includes/generic-foot.pug
         script(src='/js/champ-select.js')
