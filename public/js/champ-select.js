@@ -32,11 +32,17 @@ function updateAttribute(id, attr, value) {
 }
 
 function updateBan(slot, champ_id) {
-    $('#ban_' + slot).text(champ_id);
+    $('#b-' + slot).css(
+        'background-image',
+        'url(' + tileRoot + champ_id + '/' + champ_id + '000.jpg'
+    );
 }
 
 function updateSummoner(slot, champ_id, confirm) {
-    $('#summoner_' + slot).append(champ_id);
+    $('#si-' + slot).css(
+        'background-image',
+        'url(' + splashRoot + champ_id + '/' + champ_id + '000.jpg)'
+    );
 }
 
 // Init Socket Listeners
