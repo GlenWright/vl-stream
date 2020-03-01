@@ -60,6 +60,8 @@ app.get('/stream/champ-select', function(req, res) {
 app.post('/events/champ-select', jsonParser, function(req, res) {
     var etype = req.body.etype
 
+    console.log(req.body)
+
     switch (etype) {
         case 'create':
             var summoners = req.body.summoners
