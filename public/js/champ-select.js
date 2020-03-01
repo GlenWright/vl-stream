@@ -50,7 +50,7 @@ socket.on('ban', function(data) {
     var champ_id = data.champ_id;
     var confirm = data.confirm;
 
-    state.bans[slot].push({ champ_id: champ_id });
+    state.bans.push({ champ_id: champ_id });
 
     updateBan(slot, champ_id, confirm);
 });
