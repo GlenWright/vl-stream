@@ -31,18 +31,19 @@ function updateAttribute(id, attr, value) {
     });
 }
 
-function updateBan(slot, champ_id) {
-    $('#b-' + slot).css(
+function updateBackgroundImage(id, value) {
+    $('#' + id).css(
         'background-image',
-        'url(' + tileRoot + champ_id + '/' + champ_id + '000.jpg'
+        'url(' + value + ')'
     );
 }
 
+function updateBan(slot, champ_id) {
+    updateBackgroundImage('b-' + slot, tileRoot + champ_id + '/' + champ_id + '000.jpg');
+}
+
 function updateSummoner(slot, champ_id, confirm) {
-    $('#si-' + slot).css(
-        'background-image',
-        'url(' + splashRoot + champ_id + '/' + champ_id + '000.jpg)'
-    );
+    updateBackgroundImage('si-' + slot, splashRoot + champ_id + '/' + champ_id + '000.jpg');
 }
 
 // Init Socket Listeners
@@ -77,15 +78,15 @@ socket.on('teamChanges', function(data) {
     if (data.blue_team !== blue_team) {
         blue_team = data.blue_team;
         blue_logo = data.blue_logo;
-        updateText('blue_team', blue_team);
-        updateText('blue_logo', 'src', blue_logo);
+        updateText('tn-0', blue_team);
+        updateBackgroundImage('ti-0', blue_logo);
     }
 
     if (data.red_team !== red_team) {
         red_team = data.red_team;
         red_logo = data.red_logo;
-        updateText('red_team', red_team);
-        updateAttribute('red_logo', 'src', red_logo);
+        updateText('tn-1', red_team);
+        updateBackgroundImage('ti-1', red_logo);
     }
 });
 
@@ -102,23 +103,27 @@ socket.on('initData', function(data) {
     $('#red_team').text(red_team);
     $('#red_logo').text(red_logo);
 
-    state.summoners.forEach(function(summoner, i) {
-        $('#sn-' + i).text(summoner.name);
+    if (state.summoners) {
+        state.summoners.forEach(function(summoner, i) {
+            $('#sn-' + i).text(summoner.name);
 
-        if (summoner.champ_id) {
-            // Set champ image
-            $('#si-' + i).css(
+            if (summoner.champ_id) {
+                // Set champ image
+                $('#si-' + i).css(
+                    'background-image',
+                    'url(' + splashRoot + summoner.champ_id + '/' + summoner.champ_id + '000.jpg)'
+                );
+            }
+        });
+    }
+
+    if (state.bans) {
+        state.bans.forEach(function(ban, i) {
+            // Set banned champs
+            $('#b-' + i).css(
                 'background-image',
-                'url(' + splashRoot + summoner.champ_id + '/' + summoner.champ_id + '000.jpg)'
+                'url(' + tileRoot + ban.champ_id + '/' + ban.champ_id + '000.jpg'
             );
-        }
-    });
-
-    state.bans.forEach(function(ban, i) {
-        // Set banned champs
-        $('#b-' + i).css(
-            'background-image',
-            'url(' + tileRoot + ban.champ_id + '/' + ban.champ_id + '000.jpg'
-        );
-    });
+        });
+    }
 });
