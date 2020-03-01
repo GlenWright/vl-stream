@@ -32,21 +32,21 @@ body {
 /* Team images */
 .team-image {
     z-index: 49;
-    width: 208px;
-    height: 159px;
+    width: 211px;
+    height: 161px;
     background-size: 73%;
     background-repeat: no-repeat;
 }
 
 #ti-0 {
-    top: 15px;
-    left: 483px;
+    top: 0px;
+    left: 475px;
     background-position: 26% center;
     clip-path: polygon(0 0, 81% 0, 100% 100%, 0% 100%);
 }
 
 #ti-1 {
-    top: 15px;
+    top: 0px;
     left: 1230px;
     background-position: 74% center;
     clip-path: polygon(19% 0, 100% 0, 100% 100%, 0% 100%);
@@ -55,66 +55,66 @@ body {
 /* Player images */
 .player-image {
     z-index: 25;
-    width: 364px;
-    height: 116px;
+    width: 365px;
+    height: 118px;
     background-size: cover;
 }
 
 #si-0 {
-    top: 210px;
-    left: 18px;
+    top: 199px;
+    left: 5px;
 }
 
 #si-1 {
-    top: 335.25px;
-    left: 18px;
+    top: 325px;
+    left: 5px;
 }
 
 #si-2 {
-    top: 459.25px;
-    left: 18px;
+    top: 451px;
+    left: 5px;
 }
 
 #si-3 {
-    top: 612.25px;
-    left: 18px;
+    top: 606px;
+    left: 5px;
 }
 
 #si-4 {
-    top: 737.25px;
-    left: 18px;
+    top: 733px;
+    left: 5px;
 }
 
 #si-5 {
-    top: 210px;
-    left: 1541px;
+    top: 199px;
+    left: 1552px;
 }
 
 #si-6 {
-    top: 335.25px;
-    left: 1541px;
+    top: 325px;
+    left: 1552px;
 }
 
 #si-7 {
-    top: 459.25px;
-    left: 1541px;
+    top: 451px;
+    left: 1552px;
 }
 
 #si-8 {
-    top: 612.25px;
-    left: 1541px;
+    top: 606px;
+    left: 1552px;
 }
 
 #si-9 {
-    top: 737.25px;
-    left: 1541px;
+    top: 733px;
+    left: 1552px;
 }
 
 /* Ban images */
 .ban-image {
     z-index: 49;
-    width: 154px;
-    height: 122px;
+    width: 156px;
+    height: 124px;
     background-size: cover;
 }
 
@@ -127,53 +127,53 @@ body {
 }
 
 #b-0 {
-    top: 910px;
-    left: 60px;
+    top: 907px;
+    left: 48px;
 }
 
 #b-1 {
-    top: 910px;
-    left: 1715px;
+    top: 907px;
+    left: 1725px;
 }
 
 #b-2 {
-    top: 910px;
-    left: 187px;
+    top: 907px;
+    left: 177px;
 }
 
 #b-3 {
-    top: 910px;
-    left: 1588px;
+    top: 907px;
+    left: 1596px;
 }
 
 #b-4 {
-    top: 910px;
-    left: 314px;
+    top: 907px;
+    left: 305px;
 }
 
 #b-5 {
-    top: 910px;
-    left: 1463px;
+    top: 907px;
+    left: 1469px;
 }
 
 #b-6 {
-    top: 910px;
-    left: 483px;
+    top: 907px;
+    left: 477px;
 }
 
 #b-7 {
-    top: 910px;
-    left: 1290px;
+    top: 907px;
+    left: 1294px;
 }
 
 #b-8 {
-    top: 910px;
-    left: 609px;
+    top: 907px;
+    left: 604px;
 }
 
 #b-9 {
-    top: 910px;
-    left: 1164px;
+    top: 907px;
+    left: 1167px;
 }
 
 /* TEXT */
@@ -194,13 +194,13 @@ body {
 }
 
 .timer.blue {
-    top: 28px;
-    left: 692px;
+    top: 16px;
+    left: 689px;
 }
 
 .timer.red {
-    top: 28px;
-    left: 1116px;
+    top: 16px;
+    left: 1119px;
 }
 
 #phase {
@@ -209,7 +209,7 @@ body {
     font-size: 30px;
     font-family: 'BigNoodleTitling';
     text-align: center;
-    top: 142px;
+    top: 129px;
     left: 840px;
     text-shadow:  5px 5px 10px #222;
     color: #d6cfcf;
@@ -221,19 +221,19 @@ body {
     line-height: 51px;
     font-family: 'BigNoodleTitling';
     text-align: center;
-    width: 459px;
+    width: 462px;
     height: 51px;
     color: black;
 }
 
 /* Team names */
 #tn-0 {
-    top: 182px;
-    left: 482px;
+    top: 170px;
+    left: 477px;
 }
 
 #tn-1 {
-    top: 182px;
+    top: 170px;
     left: 979px;
 }
 
@@ -251,51 +251,51 @@ body {
 
 /* Player names */
 #sn-0 {
-    top: 299px;
-    left: 19px;
+    top: 289px;
+    left: 5px;
 }
 
 #sn-1 {
-    top: 424px;
-    left: 19px;
+    top: 414px;
+    left: 5px;
 }
 
 #sn-2 {
-    top: 548px;
-    left: 19px;
+    top: 541px;
+    left: 5px;
 }
 
 #sn-3 {
-    top: 701px;
-    left: 19px;
+    top: 696px;
+    left: 5px;
 }
 
 #sn-4 {
-    top: 826px;
-    left: 19px;
+    top: 822px;
+    left: 5px;
 }
 
 #sn-5 {
-    top: 299px;
-    left: 1545px;
+    top: 289px;
+    left: 1551px;
 }
 
 #sn-6 {
-    top: 424px;
-    left: 1545px;
+    top: 414px;
+    left: 1551px;
 }
 
 #sn-7 {
-    top: 548px;
-    left: 1545px;
+    top: 541px;
+    left: 1551px;
 }
 
 #sn-8 {
-    top: 701px;
-    left: 1545px;
+    top: 696px;
+    left: 1551px;
 }
 
 #sn-9 {
-    top: 826px;
-    left: 1545px;
+    top: 822px;
+    left: 1551px;
 }
