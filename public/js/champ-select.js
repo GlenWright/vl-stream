@@ -6,6 +6,9 @@ var state = {
     bans: []
 };
 
+var tileRoot = 'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/';
+var splashRoot = 'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/';
+
 var blue_team = 'Blue Team';
 var blue_logo = '';
 
@@ -94,14 +97,22 @@ socket.on('initData', function(data) {
     $('#red_logo').text(red_logo);
 
     state.summoners.forEach(function(summoner, i) {
-        $('#summoner_' + i).text(summoner.name);
+        $('#sn-' + i).text(summoner.name);
 
         if (summoner.champ_id) {
             // Set champ image
+            $('#si-' + i).css(
+                'background-image',
+                'url(' + splashRoot + summoner.champ_id + '/' + summoner.champ_id + '000.jpg)'
+            );
         }
     });
 
     state.bans.forEach(function(ban, i) {
         // Set banned champs
+        $('#b-' + i).css(
+            'background-image',
+            'url(' + tileRoot + ban.champ_id + '/' + ban.champ_id + '000.jpg'
+        );
     });
 });

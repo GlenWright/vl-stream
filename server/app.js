@@ -67,7 +67,7 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
             banCount = 0
             pickCount = 0
             champSelect = {
-                phase: 'bans',
+                phase: 'Ban Phase 1',
                 summoners: [],
                 bans: []
             }
@@ -90,7 +90,6 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
             var champId = req.body.champ_id
             var confirm = req.body.confirm
 
-            champSelect.bans.push({ champ_id: champId })
 
             // Update stream clients
             streamio.emit('ban', {
@@ -99,13 +98,16 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
                 confirm: confirm
             })
 
-            if (confirm) banCount++
+            if (confirm) {
+                banCount++
+                champSelect.bans.push({ champ_id: champId })
+            }
 
             // Check phase
             var newPhase = champSelect.phase
 
-            if (banCount === 6) newPhase = 'picks' // Begin pick phase
-            if (banCount === 10) newPhase = 'picks' // Begin pick phase 2
+            if (banCount === 6) newPhase = 'Pick Phase 1' // Begin pick phase
+            if (banCount === 10) newPhase = 'Pick Phase 2' // Begin pick phase 2
 
             if (champSelect.phase !== newPhase) {
                 champSelect.phase = newPhase
@@ -136,8 +138,8 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
             // Check phase
             var newPhase = champSelect.phase
 
-            if (pickCount === 6) newPhase = 'bans' // Begin ban phase 2
-            if (pickCount === 10) newPhase = 'preparation' // Begin prep phase
+            if (pickCount === 6) newPhase = 'Ban Phase 2' // Begin ban phase 2
+            if (pickCount === 10) newPhase = 'Preparation' // Begin prep phase
 
             if (champSelect.phase !== newPhase) {
                 champSelect.phase = newPhase
