@@ -299,3 +299,83 @@ body {
     top: 822px;
     left: 1551px;
 }
+
+.player-message {
+    z-index: 100;
+    font-size: 25px;
+    font-family: 'BigNoodleTitling';
+    color: white;
+    text-align: right;
+
+    -webkit-animation: pulsate 2s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.5;
+}
+
+@-webkit-keyframes pulsate {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5
+    }
+}
+
+/*
+width: 354px;
+height: 28px;
+*/
+
+/* Player messages */
+#sm-0 {
+    top: 289px;
+    right: 1558px;
+}
+
+#sm-1 {
+    top: 414px;
+    right: 1558px;
+}
+
+#sm-2 {
+    top: 541px;
+    right: 1558px;
+}
+
+#sm-3 {
+    top: 696px;
+    right: 1558px;
+}
+
+#sm-4 {
+    top: 822px;
+    right: 1558px;
+}
+
+#sm-5 {
+    top: 289px;
+    right: 10px;
+}
+
+#sm-6 {
+    top: 414px;
+    right: 10px;
+}
+
+#sm-7 {
+    top: 541px;
+    right: 10px;
+}
+
+#sm-8 {
+    top: 696px;
+    right: 10px;
+}
+
+#sm-9 {
+    top: 822px;
+    right: 10px;
+}
