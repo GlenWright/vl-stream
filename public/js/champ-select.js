@@ -103,12 +103,14 @@ socket.on('teamChanges', function(data) {
 });
 
 socket.on('initData', function(data) {
+    console.log(data)
+
     timer = data.timer
     state = data.state;
     blue_team = data.blue_team;
     red_team = data.red_team;
 
-    $('#phase').text(state.phase);
+    $('#phase').text(state.phase.type.text);
     $('.timer.blue').text('');
     $('.timer.red').text('');
     $('.timer.both').text('');
