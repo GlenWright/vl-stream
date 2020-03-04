@@ -22,13 +22,11 @@ app.set('views', __dirname + '/../public/views')
 /* Data */
 let currentPage = 'waiting'
 let champSelect = {}
-let blueTeam = 'Blue Team'
-let blueLogo = ''
-let redTeam = 'Red Team'
-let redLogo = ''
+let blueTeam = {}
+let redTeam = {}
 let banCount = 0
 let pickCount = 0
-
+let teams = []
 
 function checkCurrentPage(pageName, res) {
     if (pageName !== currentPage) {
@@ -36,6 +34,23 @@ function checkCurrentPage(pageName, res) {
     }
 }
 
+
+function fetchTeams() {
+    http.get(process.env.TEAMS_URI, (resp) => {
+        let data = ''
+
+        resp.on('data', (chunk) => {
+            data += chunk
+        })
+
+        resp.on('end', () => {
+            console.log('Fetched Teams')
+            teams = JSON.parse(data)
+        })
+    }).on('error', (err) => {
+        console.log('Error: ' + err.message)
+    })
+}
 
 /* Routes */
 app.get('/', function(req, res) {
@@ -174,20 +189,18 @@ io.on('connection', (socket) => {
         streamio.emit('changePage', page)
     })
 
+    socket.on('updateTeams', () => {
+        fetchTeams()
+    })
+
     socket.on('swapTeams', () => {
         var tempTeam = blueTeam
         blueTeam = redTeam
         redTeam = tempTeam
 
-        var tempLogo = blueLogo
-        blueLogo = redLogo
-        redLogo = tempLogo
-
         streamio.emit('teamChanges', {
             blue_team: blueTeam,
-            blue_logo: blueLogo,
             red_team: redTeam,
-            red_logo: redLogo
         })
     })
 })
@@ -196,12 +209,11 @@ streamio.on('connection', (socket) => {
     socket.emit('initData', {
         state: champSelect,
         blueTeam: blueTeam,
-        blueLogo: blueLogo,
         redTeam: redTeam,
-        redLogo: redLogo
     })
 })
 
 
 httpServer.listen(process.env.PORT)
 console.log('Server started on port', process.env.PORT)
+fetchTeams()

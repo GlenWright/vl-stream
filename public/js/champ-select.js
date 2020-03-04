@@ -9,11 +9,9 @@ var state = {
 var tileRoot = 'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/';
 var splashRoot = 'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/';
 
-var blue_team = 'Blue Team';
-var blue_logo = '';
+var blue_team = {};
 
-var red_team = 'Red Team';
-var red_logo = '';
+var red_team = {};
 
 function updateText(id, text) {
     var $element = $('#' + id);
@@ -42,7 +40,7 @@ function updateBan(slot, champ_id) {
     updateBackgroundImage('b-' + slot, tileRoot + champ_id + '/' + champ_id + '000.jpg');
 }
 
-function updateSummoner(slot, champ_id, confirm) {
+function updateSummoner(slot, champ_id) {
     updateBackgroundImage('si-' + slot, splashRoot + champ_id + '/' + champ_id + '000.jpg');
 }
 
@@ -77,38 +75,46 @@ socket.on('pick', function(data) {
 socket.on('teamChanges', function(data) {
     if (data.blue_team !== blue_team) {
         blue_team = data.blue_team;
-        blue_logo = data.blue_logo;
-        updateText('tn-0', blue_team);
-        updateBackgroundImage('ti-0', blue_logo);
+        updateText('tn-0', blue_team.name);
+        updateBackgroundImage('ti-0', blue_logo.logo);
     }
 
     if (data.red_team !== red_team) {
         red_team = data.red_team;
-        red_logo = data.red_logo;
-        updateText('tn-1', red_team);
-        updateBackgroundImage('ti-1', red_logo);
+        updateText('tn-1', red_team.name);
+        updateBackgroundImage('ti-1', red_logo.logo);
     }
 });
 
 socket.on('initData', function(data) {
+    timer = data.timer
     state = data.state;
-    blue_team = data.blueTeam;
-    blue_logo = data.blueLogo;
-    red_team = data.redTeam;
-    red_logo = data.redLogo;
+    blue_team = data.blue_team;
+    red_team = data.red_team;
 
     $('#phase').text(state.phase);
-    $('#blue_team').text(blue_team);
-    $('#blue_logo').text(blue_logo);
-    $('#red_team').text(red_team);
-    $('#red_logo').text(red_logo);
+    $('.timer.blue').text('');
+    $('.timer.red').text('');
+    $('.timer.both').text('');
+
+    $('#tn-0').text(blue_team.name);
+    $('#ti-0').css(
+        'background-image',
+        'url(' + blue_logo.logo + ')'
+    );
+
+    $('#tn-1').text(red_team.name);
+    $('#ti-1').css(
+        'background-image',
+        'url(' + red_team.logo + ')'
+    );
 
     if (state.summoners) {
         state.summoners.forEach(function(summoner, i) {
             $('#sn-' + i).text(summoner.name);
 
             if (summoner.champ_id) {
-                // Set champ image
+                // Set picked champs
                 $('#si-' + i).css(
                     'background-image',
                     'url(' + splashRoot + summoner.champ_id + '/' + summoner.champ_id + '000.jpg)'
