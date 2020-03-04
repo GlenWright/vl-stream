@@ -138,7 +138,8 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
     switch (etype) {
         case 'create':
             var summoners = req.body.summoners
-
+blueTeam = teams['WSL Green']
+redTeam = teams['Cnturion Academy']
             phase = 0
             banCount = 0
             champSelect = {
