@@ -48,6 +48,8 @@ function updateSummoner(slot, champ_id) {
 
 function startTimer(time) {
     clearTimeout(timeout);
+    $('.timer').text('');
+
     var side = state.phase.side;
 
     timer = time, $seconds = document.querySelector('.timer.' + side);
@@ -165,5 +167,8 @@ socket.on('initData', function(data) {
 
     if (timer > 0) {
         startTimer(timer);
+    } else {
+        startTimer(state.phase.type.time);
+        moveCursor();
     }
 });
