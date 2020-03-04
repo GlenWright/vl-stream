@@ -1,10 +1,13 @@
 var socket = window.socket;
 
 var state = {
-    phase: 'bans',
+    phase: {},
     summoners: [],
     bans: []
 };
+
+var timer = 0;
+var timeout;
 
 var tileRoot = 'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/';
 var splashRoot = 'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/';
@@ -42,6 +45,19 @@ function updateBan(slot, champ_id) {
 
 function updateSummoner(slot, champ_id) {
     updateBackgroundImage('si-' + slot, splashRoot + champ_id + '/' + champ_id + '000.jpg');
+}
+
+function startTimer(time) {
+    clearTimeout(timeout);
+    var side = state.phase.side;
+
+    timer = time, $seconds = document.querySelector('.timer.' + side);
+    (function countdown() {
+        minutes = Math.floor(timer / 60);
+        seconds = timer % 60;
+        $seconds.textContent = (minutes > 0 ? minutes : '' ) + ':' + (seconds < 10 ? '0' : '') + seconds;
+        if (timer-- > 0) timeout = setTimeout(countdown, 1000);
+    })();
 }
 
 // Init Socket Listeners
@@ -131,5 +147,9 @@ socket.on('initData', function(data) {
                 'url(' + tileRoot + ban.champ_id + '/' + ban.champ_id + '000.jpg'
             );
         });
+    }
+
+    if (timer > 0) {
+        startTimer(timer);
     }
 });

@@ -18,14 +18,56 @@ app.use(express.static(__dirname + '/../public'))
 app.set('view engine', 'pug')
 app.set('views', __dirname + '/../public/views')
 
+/* Constants */
+const PHASE_TYPES = {
+    BAN: { text: 'Ban Phase 1', slot_text: 'Banning', time: 27 },
+    BAN2: { text: 'Ban Phase 2', slot_text: 'Banning', time: 27 },
+    PICK: { text: 'Pick Phase 1', slot_text: 'Picking', time: 27 },
+    PICK2: { text: 'Pick Phase 1', slot_text: 'Picking', time: 27 },
+    PREP: { text: 'Preparation', time: 60 },
+    DELAY: { text: 'Delay', time: 180 }
+}
 
-/* Data */
+const PHASES = [
+    /* Ban Phase 1 */
+    { slot: 0, type: PHASE_TYPES['BAN'], side: 'blue' },
+    { slot: 5, type: PHASE_TYPES['BAN'], side: 'red' },
+    { slot: 0, type: PHASE_TYPES['BAN'], side: 'blue' },
+    { slot: 5, type: PHASE_TYPES['BAN'], side: 'red' },
+    { slot: 0, type: PHASE_TYPES['BAN'], side: 'blue' },
+    { slot: 5, type: PHASE_TYPES['BAN'], side: 'red' },
+    /* Pick Phase 1 */
+    { slot: 0, type: PHASE_TYPES['PICK'], side: 'blue' },
+    { slot: 5, type: PHASE_TYPES['PICK'], side: 'red' },
+    { slot: 6, type: PHASE_TYPES['PICK'], side: 'red' },
+    { slot: 1, type: PHASE_TYPES['PICK'], side: 'blue' },
+    { slot: 2, type: PHASE_TYPES['PICK'], side: 'blue' },
+    { slot: 7, type: PHASE_TYPES['PICK'], side: 'red' },
+    /* Ban Phase 2 */
+    { slot: 5, type: PHASE_TYPES['BAN2'], side: 'red' },
+    { slot: 0, type: PHASE_TYPES['BAN2'], side: 'blue' },
+    { slot: 5, type: PHASE_TYPES['BAN2'], side: 'red' },
+    { slot: 0, type: PHASE_TYPES['BAN2'], side: 'blue' },
+    /* Pick Phase 2 */
+    { slot: 8, type: PHASE_TYPES['PICK2'], side: 'red' },
+    { slot: 3, type: PHASE_TYPES['PICK2'], side: 'blue' },
+    { slot: 4, type: PHASE_TYPES['PICK2'], side: 'blue' },
+    { slot: 9, type: PHASE_TYPES['PICK2'], side: 'red' },
+    /* Preparation Phase */
+    { slot: null, type: PHASE_TYPES['PREP'], side: 'middle' },
+    /* Waiting Phase */
+    { slot: null, type: PHASE_TYPES['DELAY'], side: 'middle' },
+]
+
+/* State */
+let phase = 0
+let timer = 0
+let timeout
 let currentPage = 'waiting'
 let champSelect = {}
 let blueTeam = {}
 let redTeam = {}
 let banCount = 0
-let pickCount = 0
 let teams = []
 
 function checkCurrentPage(pageName, res) {
@@ -34,6 +76,16 @@ function checkCurrentPage(pageName, res) {
     }
 }
 
+function runTimer() {
+    clearTimeout(timeout)
+    time = PHASES[phase].type.time
+    timer = time
+
+    (function countdown() {
+        timer = seconds
+        if (seconds-- > 0) timeout = setTimeout(countdown, 1000)
+    })()
+}
 
 function fetchTeams() {
     http.get(process.env.TEAMS_URI, (resp) => {
@@ -50,6 +102,12 @@ function fetchTeams() {
     }).on('error', (err) => {
         console.log('Error: ' + err.message)
     })
+}
+
+function changePhase() {
+    phase++
+    streamio.emit('changePhase', PHASES[phase])
+    runTimer()
 }
 
 /* Routes */
@@ -81,10 +139,10 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
         case 'create':
             var summoners = req.body.summoners
 
+            phase = 0
             banCount = 0
-            pickCount = 0
             champSelect = {
-                phase: 'Ban Phase 1',
+                phase: PHASES[phase],
                 summoners: [],
                 bans: []
             }
@@ -107,7 +165,6 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
             var champId = req.body.champ_id
             var confirm = req.body.confirm
 
-
             // Update stream clients
             streamio.emit('ban', {
                 ban_slot: banCount,
@@ -118,18 +175,8 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
             if (confirm) {
                 banCount++
                 champSelect.bans.push({ champ_id: champId })
-            }
 
-            // Check phase
-            var newPhase = champSelect.phase
-
-            if (banCount === 6) newPhase = 'Pick Phase 1' // Begin pick phase
-            if (banCount === 10) newPhase = 'Pick Phase 2' // Begin pick phase 2
-
-            if (champSelect.phase !== newPhase) {
-                champSelect.phase = newPhase
-
-                streamio.emit('phaseChange', newPhase)
+                changePhase()
             }
 
             break
@@ -150,25 +197,13 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
                 confirm: confirm
             })
 
-            if (confirm) pickCount++
-
-            // Check phase
-            var newPhase = champSelect.phase
-
-            if (pickCount === 6) newPhase = 'Ban Phase 2' // Begin ban phase 2
-            if (pickCount === 10) newPhase = 'Preparation' // Begin prep phase
-
-            if (champSelect.phase !== newPhase) {
-                champSelect.phase = newPhase
-
-                streamio.emit('phaseChange', newPhase)
-            }
+            if (confirm) changePhase()
 
             break
 
         case 'delete':
             currentPage = 'starting-soon'
-            streamio.emit('changePage', 'starting-soon')
+            changePhase()
             break
 
         default:
@@ -210,6 +245,7 @@ streamio.on('connection', (socket) => {
         state: champSelect,
         blueTeam: blueTeam,
         redTeam: redTeam,
+        timer: timer
     })
 })
 
