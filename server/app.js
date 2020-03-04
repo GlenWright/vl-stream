@@ -78,8 +78,7 @@ function checkCurrentPage(pageName, res) {
 
 function runTimer() {
     clearTimeout(timeout)
-    time = PHASES[phase].type.time
-    timer = time
+    timer = PHASES[phase].type.time
 
     (function countdown() {
         timer = seconds
