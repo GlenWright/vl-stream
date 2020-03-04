@@ -203,6 +203,16 @@ body {
     left: 1119px;
 }
 
+.timer.middle {
+    top: 0;
+    left: 800px;
+    width: 320px;
+    height: 130px;
+    color: black;
+    text-shadow: 5px 5px 10px #848484;
+    text-align: center;
+}
+
 #phase {
     z-index: 100;
     width: 241px;
