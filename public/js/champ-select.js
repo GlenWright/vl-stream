@@ -106,13 +106,13 @@ socket.on('teamChanges', function(data) {
     if (data.blue_team !== blue_team) {
         blue_team = data.blue_team;
         updateText('tn-0', blue_team.name);
-        updateBackgroundImage('ti-0', blue_logo.logo);
+        updateBackgroundImage('ti-0', blue_team.logo);
     }
 
     if (data.red_team !== red_team) {
         red_team = data.red_team;
         updateText('tn-1', red_team.name);
-        updateBackgroundImage('ti-1', red_logo.logo);
+        updateBackgroundImage('ti-1', red_team.logo);
     }
 });
 
