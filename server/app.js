@@ -244,8 +244,8 @@ io.on('connection', (socket) => {
 streamio.on('connection', (socket) => {
     socket.emit('initData', {
         state: champSelect,
-        blueTeam: blueTeam,
-        redTeam: redTeam,
+        blue_team: blueTeam,
+        red_team: redTeam,
         timer: timer
     })
 })

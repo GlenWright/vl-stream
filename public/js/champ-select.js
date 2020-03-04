@@ -13,7 +13,6 @@ var tileRoot = 'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-da
 var splashRoot = 'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/';
 
 var blue_team = {};
-
 var red_team = {};
 
 function updateText(id, text) {
@@ -118,7 +117,7 @@ socket.on('initData', function(data) {
     $('#tn-0').text(blue_team.name);
     $('#ti-0').css(
         'background-image',
-        'url(' + blue_logo.logo + ')'
+        'url(' + blue_team.logo + ')'
     );
 
     $('#tn-1').text(red_team.name);
