@@ -59,10 +59,23 @@ function startTimer(time) {
     })();
 }
 
+function moveCursor() {
+    var slot = state.phase.slot;
+
+    if (state.phase.type.slot_text && slot !== null) {
+        var slotText = state.phase.type.slot_text;
+
+        $('.player-message').text('');
+        updateText('sm-' + slot, slotText);
+    }
+}
+
 // Init Socket Listeners
 socket.on('changePhase', function(phase) {
     state.phase = phase;
-    updateText('phase', phase);
+    updateText('phase', state.phase.type.text);
+    startTimer(state.phase.type.time);
+    moveCursor();
 });
 
 socket.on('ban', function(data) {

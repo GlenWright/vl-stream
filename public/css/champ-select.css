@@ -34,21 +34,21 @@ body {
     z-index: 49;
     width: 211px;
     height: 161px;
-    background-size: 73%;
+    background-size: 60%;
     background-repeat: no-repeat;
 }
 
 #ti-0 {
     top: 0px;
     left: 475px;
-    background-position: 26% center;
+    background-position: 33% center;
     clip-path: polygon(0 0, 81% 0, 100% 100%, 0% 100%);
 }
 
 #ti-1 {
     top: 0px;
     left: 1230px;
-    background-position: 74% center;
+    background-position: 67% center;
     clip-path: polygon(19% 0, 100% 0, 100% 100%, 0% 100%);
 }
 
