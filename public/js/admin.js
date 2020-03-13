@@ -37,6 +37,37 @@ function updateTeams(teams) {
             $('#redTeam').append(val);
         });
     }
+
+    if (blue) {
+        $('#blueTeam [value="' + blue + '"]').attr('selected', true);
+    }
+
+    if (red) {
+        $('#redTeam [value="' + red + '"]').attr('selected', true);
+    }
+}
+
+/* Random Functions */
+function saveSummoners() {
+    var summoners = {
+        0: $('#sn-0').val(),
+        1: $('#sn-1').val(),
+        2: $('#sn-2').val(),
+        3: $('#sn-3').val(),
+        4: $('#sn-4').val(),
+        5: $('#sn-5').val(),
+        6: $('#sn-6').val(),
+        7: $('#sn-7').val(),
+        8: $('#sn-8').val(),
+        9: $('#sn-9').val(),
+    };
+
+    socket.emit('saveSummoners', summoners, function(data) {
+        if (data.success) {
+            markSaved($('#save-summoners-blue'));
+            markSaved($('#save-summoners-red'));
+        }
+    });
 }
 
 /* Socket Declaration */
@@ -78,4 +109,27 @@ $('.team-name').change(function() {
 
 $('.summoner-name').change(function() {
     markUnsaved(this);
+});
+
+/* Save Buttons */
+$('#save-teams').click(function() {
+    var self = this;
+    var teams = {
+        blueTeam: $('#blueTeam').val(),
+        redTeam: $('#redTeam').val(),
+    };
+
+    socket.emit('saveTeams', teams, function(data) {
+        if (data.success) {
+            markSaved(self);
+        }
+    });
+});
+
+$('#save-summoners-blue').click(function() {
+    saveSummoners();
+});
+
+$('#save-summoners-red').click(function() {
+    saveSummoners();
 });

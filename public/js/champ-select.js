@@ -116,6 +116,14 @@ socket.on('teamChanges', function(data) {
     }
 });
 
+socket.on('summonerChanges', function(data) {
+    state.summoners = data.summoners;
+
+    data.summoners.forEach(function(summoner, i) {
+        updateText('sn-' + i, summoner.name);
+    });
+});
+
 socket.on('initData', function(data) {
     console.log(data)
 

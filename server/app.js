@@ -248,6 +248,36 @@ io.on('connection', (socket) => {
             redTeam: redTeam,
         })
     })
+
+    socket.on('saveTeams', (data, cb) => {
+        blueTeam = teams[data.blueTeam]
+        redTeam = teams[data.redTeam]
+
+        streamio.emit('teamChanges', {
+            blueTeam: blueTeam,
+            redTeam: redTeam,
+        })
+
+        cb({success: true})
+    })
+
+    socket.on('saveSummoners', (data, cb) => {
+        for (let [i, summoner] of Object.entries(data)) {
+            if (champSelect.summoners[i]) {
+                champSelect.summoners[i].name = summoner
+            } else {
+                champSelect.summoners[i] = {
+                    name: summoner
+                }
+            }
+        }
+
+        streamio.emit('summonerChanges', {
+            summoners: champSelect.summoners
+        })
+
+        cb({success: true})
+    })
 })
 
 streamio.on('connection', (socket) => {
