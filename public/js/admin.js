@@ -43,9 +43,10 @@ function updateTeams(teams) {
 
 /* Socket Declaration */
 socket.on('initData', (data) => {
-    $('#blueTeam').val(data.blueTeam);
-    $('#redTeam').val(data.redTeam);
     updateTeams(data.teams);
+
+    $('#blueTeam').val(data.blueTeam.name);
+    $('#redTeam').val(data.redTeam.name);
 
     data.champSelect.summoners.forEach(function(summoner, index) {
         $('#sn-' + index).val(summoner.name);

@@ -12,8 +12,8 @@ var timeout;
 var tileRoot = 'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/';
 var splashRoot = 'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/';
 
-var blue_team = {};
-var red_team = {};
+var blueTeam = {};
+var redTeam = {};
 
 function updateText(id, text) {
     var $element = $('#' + id);
@@ -103,16 +103,16 @@ socket.on('pick', function(data) {
 });
 
 socket.on('teamChanges', function(data) {
-    if (data.blue_team !== blue_team) {
-        blue_team = data.blue_team;
-        updateText('tn-0', blue_team.name);
-        updateBackgroundImage('ti-0', blue_team.logo);
+    if (data.blueTeam !== blueTeam) {
+        blueTeam = data.blueTeam;
+        updateText('tn-0', blueTeam.name);
+        updateBackgroundImage('ti-0', blueTeam.logo);
     }
 
-    if (data.red_team !== red_team) {
-        red_team = data.red_team;
-        updateText('tn-1', red_team.name);
-        updateBackgroundImage('ti-1', red_team.logo);
+    if (data.redTeam !== redTeam) {
+        redTeam = data.redTeam;
+        updateText('tn-1', redTeam.name);
+        updateBackgroundImage('ti-1', redTeam.logo);
     }
 });
 
@@ -121,24 +121,24 @@ socket.on('initData', function(data) {
 
     timer = data.timer
     state = data.state;
-    blue_team = data.blue_team;
-    red_team = data.red_team;
+    blueTeam = data.blueTeam;
+    redTeam = data.redTeam;
 
     $('#phase').text(state.phase.type.text);
     $('.timer.blue').text('');
     $('.timer.red').text('');
     $('.timer.both').text('');
 
-    $('#tn-0').text(blue_team.name);
+    $('#tn-0').text(blueTeam.name);
     $('#ti-0').css(
         'background-image',
-        'url(' + blue_team.logo + ')'
+        'url(' + blueTeam.logo + ')'
     );
 
-    $('#tn-1').text(red_team.name);
+    $('#tn-1').text(redTeam.name);
     $('#ti-1').css(
         'background-image',
-        'url(' + red_team.logo + ')'
+        'url(' + redTeam.logo + ')'
     );
 
     if (state.summoners) {

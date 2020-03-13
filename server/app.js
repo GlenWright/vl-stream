@@ -221,8 +221,8 @@ io.on('connection', (socket) => {
 
     socket.emit('initData', {
         champSelect: champSelect,
-        blue_team: blueTeam,
-        red_team: redTeam,
+        blueTeam: blueTeam,
+        redTeam: redTeam,
         teams: teams
     })
 
@@ -242,8 +242,8 @@ io.on('connection', (socket) => {
         redTeam = tempTeam
 
         streamio.emit('teamChanges', {
-            blue_team: blueTeam,
-            red_team: redTeam,
+            blueTeam: blueTeam,
+            redTeam: redTeam,
         })
     })
 })
@@ -251,8 +251,8 @@ io.on('connection', (socket) => {
 streamio.on('connection', (socket) => {
     socket.emit('initData', {
         state: champSelect,
-        blue_team: blueTeam,
-        red_team: redTeam,
+        blueTeam: blueTeam,
+        redTeam: redTeam,
         timer: timer
     })
 })
