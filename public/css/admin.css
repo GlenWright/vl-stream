@@ -1,0 +1,20 @@
+.card {
+    border-color: #17a2b8;
+    margin-bottom: 1rem;
+}
+
+.card.saved {
+    border-color: #28a745;
+}
+
+.card.unsaved {
+    border-color: #dc3545;
+}
+
+.btn {
+    margin-right: 0.5rem;
+}
+
+.card:not(.unsaved) .btn.save-button {
+    display: none;
+}

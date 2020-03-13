@@ -64,7 +64,7 @@ let phase = 0
 let timer = 0
 let timeout
 let currentPage = 'waiting'
-let champSelect = {}
+let champSelect = {summoners: [{name: '02cfranklin'}]}
 let blueTeam = {}
 let redTeam = {}
 let banCount = 0
@@ -219,13 +219,21 @@ redTeam = teams['Cnturion Academy']
 io.on('connection', (socket) => {
     console.log(socket.id)
 
+    socket.emit('initData', {
+        champSelect: champSelect,
+        blue_team: blueTeam,
+        red_team: redTeam,
+        teams: teams
+    })
+
     socket.on('changePage', (page) => {
         currentPage = page
         streamio.emit('changePage', page)
     })
 
-    socket.on('updateTeams', () => {
+    socket.on('refreshTeams', (cb) => {
         fetchTeams()
+        cb(teams)
     })
 
     socket.on('swapTeams', () => {

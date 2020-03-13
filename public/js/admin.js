@@ -1,9 +1,82 @@
 var socket = io(window.location.origin);
 
-$('#press-me').click(function() {
+/* View Manipulation */
+function revertState(self) {
+    var $parent = $(self).closest('.card');
+    $parent.removeClass('unsaved');
+    $parent.removeClass('saved');
+}
+
+function markUnsaved(self) {
+    revertState(self);
+    var $parent = $(self).closest('.card');
+    $parent.addClass('unsaved');
+}
+
+function markSaved(self) {
+    revertState(self);
+    var $parent = $(self).closest('.card');
+    $parent.addClass('saved');
+}
+
+function updateTeams(teams) {
+    var blue = $('#blueTeam').val();
+    var red = $('#redTeam').val();
+    console.log(teams);
+
+    var tArr = Object.keys(teams);
+    tArr.sort(function(a, b) {
+        return a.toLowerCase().localeCompare(b.toLowerCase());
+    });
+
+    if (tArr.length > 0) {
+        $('#blueTeam').html('<option selected="selected" disabled="disabled">Please select Blue team</option>');
+        $('#redTeam').html('<option selected="selected" disabled="disabled">Please select Red team</option>');
+
+        tArr.forEach(function(team) {
+            var val = '<option value="' + team + '">' + team + '</option>';
+            $('#blueTeam').append(val);
+            $('#redTeam').append(val);
+        });
+    }
+}
+
+/* Socket Declaration */
+socket.on('initData', (data) => {
+    $('#blueTeam').val(data.blueTeam);
+    $('#redTeam').val(data.redTeam);
+    updateTeams(data.teams);
+
+    data.champSelect.summoners.forEach(function(summoner, index) {
+        $('#sn-' + index).val(summoner.name);
+    });
+});
+
+socket.on('updateData', (data) => {
+    //
+});
+
+/* View Buttons */
+$('#champ-select').click(function() {
     socket.emit('changePage', 'champ-select');
 });
 
-$('#swap-teams').click(function() {
+/* Quick Functions */
+$('#swap-sides').click(function() {
     socket.emit('swapTeams');
+});
+
+$('#refresh-teams').click(function() {
+    socket.emit('refreshTeams', function(data) {
+        updateTeams(data);
+    });
+});
+
+/* Input Changes */
+$('.team-name').change(function() {
+    markUnsaved(this);
+});
+
+$('.summoner-name').change(function() {
+    markUnsaved(this);
 });

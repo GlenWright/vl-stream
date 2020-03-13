@@ -11,7 +11,74 @@ html
                 p.lead Use these controls instead of having to mess around with OBS excessively
                 p.lead You only need to configure one OBS Scene with a browser view over your League game. Use this link for your browser source: http://url.com/stream/waiting
 
-        button#press-me View Champ Select
-        button#swap-teams Swap Teams
+        .container
+            .row
+                .col-sm-12
+                    .card
+                        .card-header Views
+                        .card-body
+                            button#champ-select.btn.btn-primary(type='button') View Champ Select
+            .row
+                .col-sm-12
+                    .card
+                        .card-header Teams
+                        .card-body
+                            form
+                                .row
+                                    .col-md-6
+                                        .form-group
+                                            label(for='blueTeam') Blue Side
+                                            select#blueTeam.form-control.team-name(name='blueTeam')
+                                                option(value='')
+                                    .col-md-6
+                                        .form-group
+                                            label(for='redTeam') Red Side
+                                            select#redTeam.form-control.team-name(name='redTeam')
+                                                option(value='')
+                                button#swap-sides.btn.btn-primary(type='button') Swap Sides
+                                button#refresh-teams.btn.btn-info(type='button') Refresh Team Lists
+                                button#save-teams.btn.btn-success.save-button(type='button') Save Changes
+
+            .row
+                .col-md-6
+                    .card
+                        .card-header Blue Team
+                        .card-body
+                            .form-group
+                                label(for='sn-0') Summoner 0
+                                input#sn-0.form-control.summoner-name(type='text', value='')
+                            .form-group
+                                label(for='sn-1') Summoner 1
+                                input#sn-1.form-control.summoner-name(type='text', value='')
+                            .form-group
+                                label(for='sn-2') Summoner 2
+                                input#sn-2.form-control.summoner-name(type='text', value='')
+                            .form-group
+                                label(for='sn-3') Summoner 3
+                                input#sn-3.form-control.summoner-name(type='text', value='')
+                            .form-group
+                                label(for='sn-4') Summoner 4
+                                input#sn-4.form-control.summoner-name(type='text', value='')
+                            button#save-blue-team.btn.btn-success.save-button(type='button') Save Changes
+                .col-md-6
+                    .card
+                        .card-header Red Team
+                        .card-body
+                            .form-group
+                                label(for='sn-5') Summoner 5
+                                input#sn-5.form-control.summoner-name(type='text', value='')
+                            .form-group
+                                label(for='sn-6') Summoner 6
+                                input#sn-6.form-control.summoner-name(type='text', value='')
+                            .form-group
+                                label(for='sn-7') Summoner 7
+                                input#sn-7.form-control.summoner-name(type='text', value='')
+                            .form-group
+                                label(for='sn-8') Summoner 8
+                                input#sn-8.form-control.summoner-name(type='text', value='')
+                            .form-group
+                                label(for='sn-9') Summoner 9
+                                input#sn-9.form-control.summoner-name(type='text', value='')
+                            button#save-red-team.btn.btn-success.save-button(type='button') Save Changes
 
         include includes/admin-foot.pug
