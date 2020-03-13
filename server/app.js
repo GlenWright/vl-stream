@@ -64,7 +64,10 @@ let phase = 0
 let timer = 0
 let timeout
 let currentPage = 'waiting'
-let champSelect = {summoners: [{name: '02cfranklin'}]}
+let champSelect = {
+    summoners: [{name: '02cfranklin'}],
+    phase: { slot: 0, type: { text: 'Ban Phase 1', slot_text: 'Banning', time: 27 }, side: 'blue' }
+}
 let blueTeam = {}
 let redTeam = {}
 let banCount = 0
@@ -137,8 +140,7 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
     switch (etype) {
         case 'create':
             var summoners = req.body.summoners
-blueTeam = teams['WSL Green']
-redTeam = teams['Cnturion Academy']
+
             phase = 0
             banCount = 0
             champSelect = {
