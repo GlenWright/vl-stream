@@ -1,22 +1,20 @@
 var socket = io(window.location.origin);
 
 /* View Manipulation */
-function revertState(self) {
+function changeSaveState(self, newState) {
     var $parent = $(self).closest('.card');
     $parent.removeClass('unsaved');
     $parent.removeClass('saved');
+
+    $parent.addClass(newState);
 }
 
 function markUnsaved(self) {
-    revertState(self);
-    var $parent = $(self).closest('.card');
-    $parent.addClass('unsaved');
+    changeSaveState(self, 'unsaved');
 }
 
 function markSaved(self) {
-    revertState(self);
-    var $parent = $(self).closest('.card');
-    $parent.addClass('saved');
+    changeSaveState(self, 'saved');
 }
 
 function updateTeams(teams) {
