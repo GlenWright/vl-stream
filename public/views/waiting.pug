@@ -2,17 +2,10 @@ doctype html
 html
     head
         include includes/stream-head.pug
+        link(href='/css/waiting.css', rel='stylesheet', type='text/css')
     body
-        p Team 1
-        p Team 2
-        p Score 1
-        p Score 2
-        p
-            | Logo 1
-            img(src='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png')
-        p
-            | Logo 2
-            img(src='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png')
+        #container
+            #overlay
 
         include includes/stream-foot.pug
         script(src='/js/waiting.js')
