@@ -40,7 +40,7 @@ function updateBackgroundImage(id, value) {
 
 function updateBan(slot, champ_id) {
     if (champ_id === 0) {
-        updateBackgroundImage('si-' + slot, '/img/no-ban.png');
+        updateBackgroundImage('b-' + slot, '/img/no-ban.png');
     } else {
         updateBackgroundImage('b-' + slot, tileRoot + champ_id + '/' + champ_id + '000.jpg');
     }
