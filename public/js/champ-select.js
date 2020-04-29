@@ -39,15 +39,15 @@ function updateBackgroundImage(id, value) {
 }
 
 function updateBan(slot, champ_id) {
-    updateBackgroundImage('b-' + slot, tileRoot + champ_id + '/' + champ_id + '000.jpg');
-}
-
-function updateSummoner(slot, champ_id) {
     if (champ_id === 0) {
         updateBackgroundImage('si-' + slot, '/img/no-ban.png');
     } else {
-        updateBackgroundImage('si-' + slot, splashRoot + champ_id + '/' + champ_id + '000.jpg');
+        updateBackgroundImage('b-' + slot, tileRoot + champ_id + '/' + champ_id + '000.jpg');
     }
+}
+
+function updateSummoner(slot, champ_id) {
+    updateBackgroundImage('si-' + slot, splashRoot + champ_id + '/' + champ_id + '000.jpg');
 }
 
 function startTimer(time) {
