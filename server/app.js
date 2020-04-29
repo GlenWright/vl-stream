@@ -203,6 +203,19 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
 
             break
 
+        case 'trade':
+            var champId = req.body.champ_id
+            var slot = req.bodyy.cell_id
+
+            champSelect.summoners[slot].champ_id = champId
+
+            streamio.emit('trade', {
+                pick_slot: slot,
+                champ_id: champId
+            })
+
+            break
+
         case 'delete':
             currentPage = 'starting-soon'
             changePhase()

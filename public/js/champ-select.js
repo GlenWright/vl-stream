@@ -106,6 +106,15 @@ socket.on('pick', function(data) {
     updateSummoner(slot, champ_id, confirm);
 });
 
+socket.on('trade', function(data) {
+    var slot = data.pick_slot;
+    var champ_id = data.champ_id;
+
+    state.summoners[slot].champ_id = champ_id;
+
+    updateSummoner(slot, champ_id, true);
+});
+
 socket.on('teamChanges', function(data) {
     if (data.blueTeam !== blueTeam) {
         blueTeam = data.blueTeam;
