@@ -107,9 +107,6 @@ socket.on('pick', function(data) {
 });
 
 socket.on('trade', function(data) {
-    console.log('trade');
-    console.log(data);
-
     var slot = data.pick_slot;
     var champ_id = data.champ_id;
 

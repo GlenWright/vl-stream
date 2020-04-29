@@ -206,7 +206,7 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
         case 'trade':
             console.log('trade')
             var champId = req.body.champ_id
-            var slot = req.bodyy.cell_id
+            var slot = req.body.cell_id
 
             champSelect.summoners[slot].champ_id = champId
 console.log('emit')
