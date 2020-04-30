@@ -209,12 +209,12 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
             var slot = req.body.cell_id
 
             champSelect.summoners[slot].champ_id = champId
-console.log('emit')
+
             streamio.emit('trade', {
                 pick_slot: slot,
                 champ_id: champId
             })
-console.log('emitted')
+
             break
 
         case 'delete':

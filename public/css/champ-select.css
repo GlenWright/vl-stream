@@ -116,14 +116,7 @@ body {
     width: 156px;
     height: 124px;
     background-size: cover;
-}
-
-.blue.ban-image {
-    clip-path: polygon(0 0, 79% 0, 100% 100%, 21% 100%);
-}
-
-.red.ban-image {
-    clip-path: polygon(21% 0, 100% 0, 79% 100%, 0% 100%);
+    clip-path: polygon(11.5% 0, 91% 0, 91% 100%, 11.5% 100%);
 }
 
 #b-0 {
@@ -133,47 +126,47 @@ body {
 
 #b-1 {
     top: 907px;
-    left: 1725px;
+    left: 1737px;
 }
 
 #b-2 {
     top: 907px;
-    left: 177px;
+    left: 188px;
 }
 
 #b-3 {
     top: 907px;
-    left: 1596px;
+    left: 1597px;
 }
 
 #b-4 {
     top: 907px;
-    left: 305px;
+    left: 328px;
 }
 
 #b-5 {
     top: 907px;
-    left: 1469px;
+    left: 1457px;
 }
 
 #b-6 {
     top: 907px;
-    left: 1294px;
+    left: 1251px;
 }
 
 #b-7 {
     top: 907px;
-    left: 477px;
+    left: 534px;
 }
 
 #b-8 {
     top: 907px;
-    left: 1167px;
+    left: 1111px;
 }
 
 #b-9 {
     top: 907px;
-    left: 604px;
+    left: 674px;
 }
 
 /* TEXT */
