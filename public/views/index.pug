@@ -18,6 +18,7 @@ html
                         .card-header Views
                         .card-body
                             button#champ-select.btn.btn-primary(type='button') View Champ Select
+                            button#in-game.btn.btn-primary(type='button') View In Game Overlay
             .row
                 .col-sm-12
                     .card
@@ -30,11 +31,17 @@ html
                                             label(for='blueTeam') Blue Side
                                             select#blueTeam.form-control.team-name(name='blueTeam')
                                                 option(value='')
+                                        .form-group
+                                            label(for='blueScore') Blue Score
+                                            input#blueScore.form-control.score(type='number', name='blueScore')
                                     .col-md-6
                                         .form-group
                                             label(for='redTeam') Red Side
                                             select#redTeam.form-control.team-name(name='redTeam')
                                                 option(value='')
+                                        .form-group
+                                            label(for='redScore') Red Score
+                                            input#redScore.form-control.score(type='number', name='redScore')
                                 button#swap-sides.btn.btn-primary(type='button') Swap Sides
                                 button#refresh-teams.btn.btn-info(type='button') Refresh Team Lists
                                 button#save-teams.btn.btn-success.save-button(type='button') Save Changes

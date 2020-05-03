@@ -1,0 +1,20 @@
+doctype html
+html
+    head
+        include includes/stream-head.pug
+        link(href='https://fonts.googleapis.com/css?family=Lato:700&display=swap', rel='stylesheet')
+        link(href='https://fonts.googleapis.com/css?family=Open+Sans&display=swap', rel='stylesheet')
+        link(href='/css/in-game.css', rel='stylesheet', type='text/css')
+    body
+        #container
+            #overlay
+
+            #text-layer
+                #blue-score.score 0
+                #red-score.score 0
+                #blue-team.team NSKA
+                #red-team.team DV
+                #game 1
+
+        include includes/stream-foot.pug
+        script(src='/js/in-game.js')

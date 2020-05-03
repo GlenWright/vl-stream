@@ -1,0 +1,59 @@
+body {
+    position: relative;
+    width: 1920;
+    height: 1080;
+}
+
+#container {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: pink;
+}
+
+#overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    background-image: url('/img/in-game.png');
+}
+
+.score, .team {
+    z-index: 99;
+    color: #121e21;
+    font-family: 'Lato';
+    font-weight: 700;
+    font-size: 23px;
+    position: absolute;
+}
+
+#blue-score {
+    top: -3px;
+    left: 462px;
+}
+
+#red-score {
+    top: -3px;
+    left: 1456px;
+}
+
+#blue-team {
+    top: 5px;
+    left: 515px;
+}
+
+#red-team {
+    top: 5px;
+    left: 1370px;
+}
+
+#game {
+    z-index: 99;
+    font-family: 'Open Sans';
+    font-size: 22px;
+    position: absolute;
+    color: white;
+    top: 801px;
+    left: 1231px;
+}

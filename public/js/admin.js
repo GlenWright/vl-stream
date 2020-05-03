@@ -77,6 +77,9 @@ socket.on('initData', (data) => {
     $('#blueTeam').val(data.blueTeam.name);
     $('#redTeam').val(data.redTeam.name);
 
+    $('#blueScore').val(data.blueScore);
+    $('#redScore').val(data.redScore);
+
     data.champSelect.summoners.forEach(function(summoner, index) {
         $('#sn-' + index).val(summoner.name);
     });
@@ -86,9 +89,20 @@ socket.on('updateData', (data) => {
     //
 });
 
+socket.on('teamChanges', (data) => {
+    $('#blueTeam [value="' + data.blueTeam.name + '"]').attr('selected', true);
+    $('#redTeam [value="' + data.redTeam.name + '"]').attr('selected', true);
+    $('#blueScore').val(data.blueScore);
+    $('#redScore').val(data.redScore);
+})
+
 /* View Buttons */
 $('#champ-select').click(function() {
     socket.emit('changePage', 'champ-select');
+});
+
+$('#in-game').click(function() {
+    socket.emit('changePage', 'in-game');
 });
 
 /* Quick Functions */
@@ -103,7 +117,7 @@ $('#refresh-teams').click(function() {
 });
 
 /* Input Changes */
-$('.team-name').change(function() {
+$('.team-name, .score').change(function() {
     markUnsaved(this);
 });
 
@@ -117,6 +131,8 @@ $('#save-teams').click(function() {
     var teams = {
         blueTeam: $('#blueTeam').val(),
         redTeam: $('#redTeam').val(),
+        blueScore: $('#blueScore').val(),
+        redScore: $('#redScore').val(),
     };
 
     socket.emit('saveTeams', teams, function(data) {

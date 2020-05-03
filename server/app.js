@@ -70,6 +70,8 @@ let champSelect = {
 }
 let blueTeam = {}
 let redTeam = {}
+let blueScore = 0
+let redScore = 0
 let banCount = 0
 let teams = []
 
@@ -130,6 +132,11 @@ app.get('/stream/starting-soon', function(req, res) {
 app.get('/stream/champ-select', function(req, res) {
     checkCurrentPage('champ-select', res)
     res.render('champ-select')
+})
+
+app.get('/stream/in-game', function(req, res) {
+    checkCurrentPage('in-game', res)
+    res.render('in-game')
 })
 
 app.post('/events/champ-select', jsonParser, function(req, res) {
@@ -239,7 +246,16 @@ io.on('connection', (socket) => {
         champSelect: champSelect,
         blueTeam: blueTeam,
         redTeam: redTeam,
-        teams: teams
+        teams: teams,
+        blueScore: 0,
+        redScore: 0,
+    })
+
+    socket.emit('initInGame', {
+        blueTeam: blueTeam,
+        redTeam: redTeam,
+        blueScore: 0,
+        redScore: 0,
     })
 
     socket.on('changePage', (page) => {
@@ -257,9 +273,22 @@ io.on('connection', (socket) => {
         blueTeam = redTeam
         redTeam = tempTeam
 
+        var tempScore = blueScore
+        blueScore = redScore
+        redScore = tempScore
+
         streamio.emit('teamChanges', {
             blueTeam: blueTeam,
             redTeam: redTeam,
+            blueScore: blueScore,
+            redScore: redScore,
+        })
+
+        socket.emit('teamChanges', {
+            blueTeam: blueTeam,
+            redTeam: redTeam,
+            blueScore: blueScore,
+            redScore: redScore,
         })
     })
 
@@ -267,9 +296,26 @@ io.on('connection', (socket) => {
         blueTeam = teams[data.blueTeam]
         redTeam = teams[data.redTeam]
 
+        blueScore = data.blueScore
+        redScore = data.redScore
+
         streamio.emit('teamChanges', {
             blueTeam: blueTeam,
             redTeam: redTeam,
+            blueScore: blueScore,
+            redScore: redScore,
+        })
+
+        cb({success: true})
+    })
+
+    socket.on('saveScores', (data, cb) => {
+        blueScore = data.blueScore
+        redScore = data.redScore
+
+        streamio.emit('scoreChanges', {
+            blueScore: blueScore,
+            redScore: redScore,
         })
 
         cb({success: true})
