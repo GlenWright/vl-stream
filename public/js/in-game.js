@@ -1,10 +1,10 @@
 var socket = window.socket;
 
-var blueScore = 0;
-var redScore = 0;
-
 var blueTeam = {};
 var redTeam = {};
+
+var blueScore = 0;
+var redScore = 0;
 
 function updateText(id, text) {
     var $element = $('#' + id);
@@ -26,38 +26,34 @@ function updateAttribute(id, attr, value) {
 socket.on('teamChanges', function(data) {
     if (data.blueTeam !== blueTeam) {
         blueTeam = data.blueTeam;
-        updateText('blue-team', blueTeam.name);
+        blueScore = data.blueScore;
+        updateText('blueTeam', blueTeam.tag);
+        updateText('blueScore', blueScore);
     }
 
     if (data.redTeam !== redTeam) {
         redTeam = data.redTeam;
-        updateText('red-team', redTeam.name);
-    }
-});
-
-socket.on('scoreChanges', function(data) {
-    if (data.blueScore !== blueScore) {
-        blueScore = data.blueScore;
-        updateText('blue-score', blueScore);
-    }
-
-    if (data.redScore !== redScore) {
         redScore = data.redScore;
-        updateText('red-score', redScore);
+        updateText('redTeam', redTeam.tag);
+        updateText('redScore', redScore);
     }
 });
 
-socket.on('initInGame', function(data) {
+socket.on('initData', function(data) {
     console.log(data)
 
-    blueScore = data.blueScore
-    redScore = data.redScore;
     blueTeam = data.blueTeam;
     redTeam = data.redTeam;
 
-    $('#blue-score').text(blueScore);
-    $('#red-score').text(redScore);
+    blueScore = data.blueScore
+    redScore = data.redScore;
 
-    $('#blue-team').text(blueTeam.name);
-    $('#red-team').text(redTeam.name);
+    $('#blueTeam').text(blueTeam.tag);
+    $('#redTeam').text(redTeam.tag);
+
+    $('#blueScore').text(blueScore);
+    $('#redScore').text(redScore);
+
+    var game = 1 + parseInt(blueScore) + parseInt(redScore);
+    $('#game').text(game);
 });

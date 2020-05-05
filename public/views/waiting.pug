@@ -3,9 +3,30 @@ html
     head
         include includes/stream-head.pug
         link(href='/css/waiting.css', rel='stylesheet', type='text/css')
+        link(href='https://fonts.googleapis.com/css?family=Raleway:600,700&display=swap', rel='stylesheet')
     body
         #container
             #overlay
+
+            #team-blue-colour.team-colour(style='background-color: transparent')
+            #team-red-colour.team-colour(style='background-color: transparent')
+
+            #text-layer
+                #blue-team-container.team-container
+                    #blueTeam.team
+                #red-team-container.team-container
+                    #redTeam.team
+                #blueScore.score
+                #redScore.score
+                #week.thicc-detail
+                #day.thicc-detail
+                #stage.thicc-detail
+                #groupHead
+                #groupSub
+
+            #image-layer
+                #blueLogo.logo
+                #redLogo.logo
 
         include includes/stream-foot.pug
         script(src='/js/waiting.js')

@@ -17,8 +17,9 @@ html
                     .card
                         .card-header Views
                         .card-body
-                            button#champ-select.btn.btn-primary(type='button') View Champ Select
-                            button#in-game.btn.btn-primary(type='button') View In Game Overlay
+                            button#waiting.btn.btn-primary(type='button') Waiting Screen
+                            button#champ-select.btn.btn-primary(type='button') Champ Select
+                            button#in-game.btn.btn-primary(type='button') In-Game Overlay
             .row
                 .col-sm-12
                     .card
@@ -88,4 +89,25 @@ html
                                 input#sn-9.form-control.summoner-name(type='text', value='')
                             button#save-summoners-red.btn.btn-success.save-button(type='button') Save Changes
 
+            .row
+                .col-md-6
+                    .card
+                        .card-header Split Info
+                        .card-body
+                            .form-group
+                                label(for='week') Week
+                                input#week.form-control.split-info(type='text', value='')
+                            .form-group
+                                label(for='day') Day
+                                input#day.form-control.split-info(type='text', value='')
+                            .form-group
+                                label(for='stage') Stage
+                                input#stage.form-control.split-info(type='text', value='')
+                            .form-group
+                                label(for='groupHead') Group Head
+                                input#groupHead.form-control.split-info(type='text', value='')
+                            .form-group
+                                label(for='groupSub') Group Sub-head
+                                input#groupSub.form-control.split-info(type='text', value='')
+                            button#save-text.btn.btn-success.save-button(type='button') Save Changes
         include includes/admin-foot.pug

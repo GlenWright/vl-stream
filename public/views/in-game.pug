@@ -10,11 +10,13 @@ html
             #overlay
 
             #text-layer
-                #blue-score.score 0
-                #red-score.score 0
-                #blue-team.team NSKA
-                #red-team.team DV
-                #game 1
+                #blueScore.score
+                #redScore.score
+                #blue-team-container.team-container
+                    #blueTeam.team
+                #red-team-container.team-container
+                    #redTeam.team
+                #game
 
         include includes/stream-foot.pug
         script(src='/js/in-game.js')

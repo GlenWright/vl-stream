@@ -9,5 +9,148 @@ body {
     width: 100%;
     height: 100%;
     background-color: pink;
-    background-image: url('/img/waiting/placeholder.png');
+    background-image: url('/img/waiting/background.png');
+}
+
+#overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    background-image: url('/img/waiting/overlay.png');
+}
+
+.team-container {
+    z-index: 99;
+    position: absolute;
+    top: 423px;
+    width: 400px;
+    height: 131px;
+    display: table;
+}
+
+.team {
+    display: table-cell;
+    vertical-align: middle;;
+    text-align: center;
+    font-family: 'Gobold';
+    font-size: 38px;
+    color: white;
+    text-transform: uppercase;
+}
+
+#blue-team-container {
+    left: 380px;
+}
+
+#red-team-container {
+    left: 1189px;
+}
+
+.score {
+    z-index: 99;
+    position: absolute;
+    top: 444px;
+    font-family: 'Raleway';
+    font-weight: 700;
+    font-size: 70px;
+    color: #15212f;
+}
+
+#blueScore {
+    left: 845px;
+}
+
+#redScore {
+    left: 1083px;
+}
+
+.thicc-detail {
+    z-index: 99;
+    position: absolute;
+    font-family: 'Raleway';
+    font-weight: 700;
+    color: white;
+}
+
+#week {
+    top: 200px;
+    left: 959px;
+    font-size: 52px;
+}
+
+#day {
+    top: 200px;
+    left: 1137px;
+    font-size: 52px;
+}
+
+#stage {
+    top: 270px;
+    left: 789px;
+    width: 400px;
+    font-size: 36px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#groupHead {
+    z-index: 99;
+    position: absolute;
+    top: 443px;
+    left: 916px;
+    width: 135px;
+    font-family: 'Bebas';
+    font-size: 38px;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+}
+
+#groupSub {
+    z-index: 99;
+    position: absolute;
+    top: 472px;
+    left: 916px;
+    width: 135px;
+    font-family: 'Raleway';
+    font-weight: 600;
+    font-size: 55px;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+}
+
+.team-colour {
+    position: absolute;
+    top: 423px;
+    width: 667px;
+    height: 131px;
+}
+
+#team-blue-colour {
+    left: 248px;
+}
+
+#team-red-colour {
+    left: 1052px;
+}
+
+.logo {
+    z-index: 99;
+    position: absolute;
+    top: 423px;
+    width: 131px;
+    height: 131px;
+    background-size: auto 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#blueLogo {
+    left: 248px;
+}
+
+#redLogo {
+    left: 1588px;
 }

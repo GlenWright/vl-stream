@@ -68,10 +68,18 @@ let champSelect = {
     summoners: [{name: '02cfranklin'}],
     phase: { slot: 0, type: { text: 'Ban Phase 1', slot_text: 'Banning', time: 27 }, side: 'blue' }
 }
+
 let blueTeam = {}
 let redTeam = {}
 let blueScore = 0
 let redScore = 0
+
+let weekText = ''
+let dayText = ''
+let stageText = ''
+let groupHeadText = ''
+let groupSubText = ''
+
 let banCount = 0
 let teams = []
 
@@ -122,11 +130,6 @@ app.get('/', function(req, res) {
 app.get('/stream/waiting', function(req, res) {
     checkCurrentPage('waiting', res)
     res.render('waiting')
-})
-
-app.get('/stream/starting-soon', function(req, res) {
-    checkCurrentPage('starting-soon', res)
-    res.render('starting-soon')
 })
 
 app.get('/stream/champ-select', function(req, res) {
@@ -225,7 +228,7 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
             break
 
         case 'delete':
-            currentPage = 'starting-soon'
+            currentPage = 'waiting'
             changePhase()
             break
 
@@ -247,15 +250,14 @@ io.on('connection', (socket) => {
         blueTeam: blueTeam,
         redTeam: redTeam,
         teams: teams,
-        blueScore: 0,
-        redScore: 0,
-    })
-
-    socket.emit('initInGame', {
-        blueTeam: blueTeam,
-        redTeam: redTeam,
-        blueScore: 0,
-        redScore: 0,
+        blueScore: blueScore,
+        redScore: redScore,
+        timer: timer,
+        week: weekText,
+        day: dayText,
+        stage: stageText,
+        groupHead: groupHeadText,
+        groupSub: groupSubText,
     })
 
     socket.on('changePage', (page) => {
@@ -309,13 +311,19 @@ io.on('connection', (socket) => {
         cb({success: true})
     })
 
-    socket.on('saveScores', (data, cb) => {
-        blueScore = data.blueScore
-        redScore = data.redScore
+    socket.on('saveText', (data, cb) => {
+        weekText = data.week
+        dayText = data.day
+        stageText = data.stage
+        groupHeadText = data.groupHead
+        groupSubText = data.groupSub
 
-        streamio.emit('scoreChanges', {
-            blueScore: blueScore,
-            redScore: redScore,
+        streamio.emit('textChanges', {
+            week: weekText,
+            day: dayText,
+            stage: stageText,
+            groupHead: groupHeadText,
+            groupSub: groupSubText,
         })
 
         cb({success: true})
@@ -345,7 +353,14 @@ streamio.on('connection', (socket) => {
         state: champSelect,
         blueTeam: blueTeam,
         redTeam: redTeam,
-        timer: timer
+        blueScore: blueScore,
+        redScore: redScore,
+        timer: timer,
+        week: weekText,
+        day: dayText,
+        stage: stageText,
+        groupHead: groupHeadText,
+        groupSub: groupSubText,
     })
 })
 

@@ -83,6 +83,12 @@ socket.on('initData', (data) => {
     data.champSelect.summoners.forEach(function(summoner, index) {
         $('#sn-' + index).val(summoner.name);
     });
+
+    $('#week').val(data.week);
+    $('#day').val(data.day);
+    $('#stage').val(data.stage);
+    $('#groupHead').val(data.groupHead);
+    $('#groupSub').val(data.groupSub);
 });
 
 socket.on('updateData', (data) => {
@@ -90,6 +96,8 @@ socket.on('updateData', (data) => {
 });
 
 socket.on('teamChanges', (data) => {
+    $('option').attr('selected', false);
+
     $('#blueTeam [value="' + data.blueTeam.name + '"]').attr('selected', true);
     $('#redTeam [value="' + data.redTeam.name + '"]').attr('selected', true);
     $('#blueScore').val(data.blueScore);
@@ -97,6 +105,10 @@ socket.on('teamChanges', (data) => {
 })
 
 /* View Buttons */
+$('#waiting').click(function() {
+    socket.emit('changePage', 'waiting');
+});
+
 $('#champ-select').click(function() {
     socket.emit('changePage', 'champ-select');
 });
@@ -125,6 +137,10 @@ $('.summoner-name').change(function() {
     markUnsaved(this);
 });
 
+$('.split-info').change(function() {
+    markUnsaved(this);
+});
+
 /* Save Buttons */
 $('#save-teams').click(function() {
     var self = this;
@@ -148,4 +164,21 @@ $('#save-summoners-blue').click(function() {
 
 $('#save-summoners-red').click(function() {
     saveSummoners();
+});
+
+$('#save-text').click(function() {
+    var self = this;
+    var text = {
+        week: $('#week').val(),
+        day: $('#day').val(),
+        stage: $('#stage').val(),
+        groupHead: $('#groupHead').val(),
+        groupSub: $('#groupSub').val(),
+    };
+
+    socket.emit('saveText', text, function(data) {
+        if (data.success) {
+            markSaved(self);
+        }
+    });
 });

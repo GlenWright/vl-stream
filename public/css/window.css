@@ -14,6 +14,14 @@
     url("/fonts/BigNoodleTitling.svg") format("svg");
 }
 
+@font-face {
+    font-family: "Gobold";
+    src: url("/fonts/Gobold.eot");
+    src: url("/fonts/Gobold.woff") format("woff"),
+    url("/fonts/Gobold.otf") format("opentype"),
+    url("/fonts/Gobold.svg") format("svg");
+}
+
 html, body {
     width: 1920px;
     height: 1080px;
