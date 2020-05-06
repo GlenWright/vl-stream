@@ -68,10 +68,10 @@ function startTimer(time) {
 function moveCursor() {
     var slot = state.phase.slot;
 
+    $('.player-message').text('');
+
     if (state.phase.type.slot_text && slot !== null) {
         var slotText = state.phase.type.slot_text;
-
-        $('.player-message').text('');
         updateText('sm-' + slot, slotText);
     }
 }
