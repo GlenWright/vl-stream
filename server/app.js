@@ -227,9 +227,12 @@ app.post('/events/champ-select', jsonParser, function(req, res) {
 
             break
 
-        case 'delete':
-            currentPage = 'waiting'
+        case 'delay':
             changePhase()
+            break
+
+        case 'delete':
+            currentPage = 'in-game'
             break
 
         default:
