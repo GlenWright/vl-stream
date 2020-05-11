@@ -128,17 +128,17 @@ app.get('/', function(req, res) {
 })
 
 app.get('/stream/waiting', function(req, res) {
-    checkCurrentPage('waiting', res)
+    /*checkCurrentPage('waiting', res)*/
     res.render('waiting')
 })
 
 app.get('/stream/champ-select', function(req, res) {
-    checkCurrentPage('champ-select', res)
+    /*checkCurrentPage('champ-select', res)*/
     res.render('champ-select')
 })
 
 app.get('/stream/in-game', function(req, res) {
-    checkCurrentPage('in-game', res)
+    /*checkCurrentPage('in-game', res)*/
     res.render('in-game')
 })
 
