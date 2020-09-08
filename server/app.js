@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const http = require('http')
+const https = require('https')
 const express = require('express')
 const app = express()
 const httpServer = http.createServer(app)
@@ -100,7 +101,7 @@ function runTimer() {
 }
 
 function fetchTeams() {
-    http.get(process.env.TEAMS_URI, (resp) => {
+    https.get(process.env.TEAMS_URI, (resp) => {
         let data = ''
 
         resp.on('data', (chunk) => {
